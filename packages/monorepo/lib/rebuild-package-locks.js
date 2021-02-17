@@ -12,8 +12,8 @@
 
 const path = require('path');
 const fs = require('fs-extra');
-const Project = require('@lerna/project');
-const filterPackages = require('@lerna/filter-packages');
+const {Project} = require('@lerna/project');
+const {filterPackages} = require('@lerna/filter-packages');
 const {runMain, runShell} = require('./script-util');
 const debug = require('debug')('loopback:monorepo');
 

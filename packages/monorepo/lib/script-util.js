@@ -12,7 +12,7 @@ const assert = require('assert');
 const spawn = require('cross-spawn');
 const util = require('util');
 
-const Project = require('@lerna/project');
+const {Project} = require('@lerna/project');
 
 /**
  * Get a list of lerna packages with the optional filter function
@@ -21,8 +21,7 @@ const Project = require('@lerna/project');
  */
 async function getPackages(filter = () => true, cwd = process.cwd()) {
   // List all packages within the monorepo
-  const project = new Project(cwd);
-  const packages = await project.getPackages();
+  const packages = await Project.getPackages(cwd);
   return packages.filter(filter);
 }
 

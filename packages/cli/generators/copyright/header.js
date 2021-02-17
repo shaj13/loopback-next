@@ -9,7 +9,7 @@ const {git, getYears} = require('./git');
 const path = require('path');
 const {FSE, jsOrTsFiles} = require('./fs');
 const chalk = require('chalk');
-const Project = require('@lerna/project');
+const {Project} = require('@lerna/project');
 
 const {spdxLicenseList} = require('./license');
 
@@ -207,9 +207,7 @@ async function updateFileHeaders(projectRoot, options = {}) {
   const isMonorepo = await fs.exists(path.join(projectRoot, 'lerna.json'));
   if (isMonorepo) {
     // List all packages for the monorepo
-    const project = new Project(projectRoot);
-    debug('Lerna monorepo', project);
-    const packages = await project.getPackages();
+    const packages = await Project.getPackages(projectRoot);
 
     // Update file headers for each package
     const visited = [];

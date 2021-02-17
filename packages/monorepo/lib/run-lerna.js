@@ -10,7 +10,7 @@
  */
 'use strict';
 
-const Project = require('@lerna/project');
+const {Project} = require('@lerna/project');
 const lernaCli = require('lerna');
 const {runMain} = require('./script-util');
 
@@ -24,9 +24,8 @@ async function runLernaCommand(
   cwd = process.cwd(),
 ) {
   const project = new Project(cwd);
-  const rootPath = project.rootPath;
 
-  process.env.LERNA_ROOT_PATH = rootPath;
+  process.env.LERNA_ROOT_PATH = project.rootPath;
 
   lernaCli(argv);
 }
